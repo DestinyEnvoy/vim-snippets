@@ -50,6 +50,33 @@ snippet "\\?b(egin)?" "begin{} / end{}" br
 \end{$1}
 endsnippet
 
+snippet template "Basic template" b
+\documentclass[lang=cn,device=normal,14pt,blue]{elegantnote}
+
+%packagelist
+\usepackage{bm}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{hyperref}
+\usepackage{framed}
+\usepackage{tikz}
+\usepackage{cases}
+\usepackage{amssymb}
+\usepackage{graphicx}
+
+\hypersetup{pdftitle={$1},pdfauthor={于彤洲}}
+\title{$1}
+\author{${2:于彤洲}}
+
+\institute{$3}
+\date{${4:\zhtoday}}
+\begin{document}
+\maketitle
+%\tableofcontents
+	$0
+\end{document}
+endsnippet
+
 snippet abs "abstract environment" b
 \begin{abstract}
 	$0
@@ -124,16 +151,6 @@ snip.rv = eval('latex(' + match.group(1).replace('\\', '') \
     .replace('{', '(') \
     .replace('}', ')') + ')')
 `
-endsnippet
-
-
-
-snippet ( "brackets block " iA
-($1)$0
-endsnippet
-
-snippet { "brackets block " iA
-{$1}$0
 endsnippet
 
 
