@@ -51,8 +51,7 @@ snippet "\\?b(egin)?" "begin{} / end{}" br
 endsnippet
 
 snippet template "Basic template" b
-\documentclass[lang=cn,device=normal,14pt,blue]{elegantnote}
-
+\documentclass[lang=cn,device=normal,12pt,blue]{elegantnote}
 %packagelist
 \usepackage{bm}
 \usepackage{amsmath}
@@ -60,21 +59,30 @@ snippet template "Basic template" b
 \usepackage{hyperref}
 \usepackage{framed}
 \usepackage{tikz}
+\usepackage{xcolor}
 \usepackage{cases}
 \usepackage{amssymb}
 \usepackage{graphicx}
-
+% \usepackage{minted} %插入代码对应package
+% \usepackage{listings}
 \hypersetup{pdftitle={$1},pdfauthor={于彤洲}}
 \title{$1}
 \author{${2:于彤洲}}
 
 \institute{$3}
 \date{${4:\zhtoday}}
+\renewcommand{\baselinestretch}{1.5}
 \begin{document}
 \maketitle
 %\tableofcontents
 	$0
+%\bibliography{reference}	
 \end{document}
+endsnippet
+
+snippet nn "Tikz node" w
+\node[$5] (${1/[^0-9a-zA-Z]//g}${2}) ${3:at (${4:0,0}) }{$${1}$};
+$0
 endsnippet
 
 snippet abs "abstract environment" b

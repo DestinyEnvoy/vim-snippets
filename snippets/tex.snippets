@@ -1,8 +1,11 @@
 #version 1
 #PREAMBLE
+
+snippet recipe specify program
+	% !TEX program = ${1:pdflatex}
+	${0}
 #newcommand
 snippet nc \newcommand
-	\\newcommand{\\${1:cmd}}[${2:opt}]{${3:realcmd}} ${0}
 #usepackage
 snippet up \usepackage
 	\\usepackage[${1:options}]{${2:package}} ${0}
@@ -256,6 +259,7 @@ snippet tikz figure environment (tikzpicture)
 	\\label{fig:${4}}
 	\\end{figure}
 	${0}
+
 snippet subfig subfigure environment
 	\\begin{subfigure}[${1}]{${2:\\textwidth}}
 	\\begin{center}
