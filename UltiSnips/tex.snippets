@@ -50,27 +50,26 @@ snippet "\\?b(egin)?" "begin{} / end{}" br
 \end{$1}
 endsnippet
 
-snippet template "Basic template" b
+snippet note "Basic note template" b
 \documentclass[lang=cn,device=normal,12pt,blue]{elegantnote}
 %packagelist
 \usepackage{bm}
 \usepackage{amsmath}
 \usepackage{mathrsfs}
-\usepackage{hyperref}
 \usepackage{framed}
 \usepackage{tikz}
 \usepackage{xcolor}
 \usepackage{cases}
 \usepackage{amssymb}
 \usepackage{graphicx}
-% \usepackage{minted} %插入代码对应package
-% \usepackage{listings}
-\hypersetup{pdftitle={$1},pdfauthor={于彤洲}}
+% \usepackage{minted} %inserting highlight code needs it
+\usepackage{hyperref}
+\hypersetup{pdftitle={$1},pdfauthor={Diracs}}
 \title{$1}
-\author{${2:于彤洲}}
+\author{${2:Diracs}}
 
 \institute{$3}
-\date{${4:\zhtoday}}
+\date{}%\zhtoday:will show the Chinese date format;
 \renewcommand{\baselinestretch}{1.5}
 \begin{document}
 \maketitle
@@ -145,6 +144,7 @@ endsnippet
 snippet sympy "sympy block " w
 sympy $1 sympy$0
 endsnippet
+
 
 priority 10000
 snippet 'sympy(.*)sympy' "evaluate sympy" wr
