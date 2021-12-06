@@ -5,6 +5,9 @@ snippet recipe specify program
 	% !TEX program = ${1:pdflatex}
 	${0}
 #newcommand
+snippet encrypt encrypt pdf
+	\\special{pdf:encrypt userpw () ownerpw (${1:ownerpassword}) length ${2:40} perm ${3:2052}}
+	${0}
 snippet nc \newcommand
 	\\newcommand{\\${1:cmd}}[${2:opt}]{${3:realcmd}} ${0}
 #usepackage
