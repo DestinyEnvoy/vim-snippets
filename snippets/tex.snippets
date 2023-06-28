@@ -353,6 +353,8 @@ snippet lr{ left\{ right\}
 	\\left\\{ ${0:${VISUAL}} \\right\\}
 snippet lr[ left[ right]
 	\\left[ ${0:${VISUAL}} \\right]
+snippet lr< left< right>
+	\\left< ${0:${VISUAL}} \\right>
 snippet lra langle rangle
 	\\langle ${0:${VISUAL}} \\rangle
 # Code listings
@@ -411,7 +413,9 @@ snippet ddot ddot
 # Vector
 snippet vec vector
 	\\vec{{$1}} {$0}
-
+# Bar
+snippet bar bar
+	\\bar{{$1}} {$0}
 # Cross product
 snippet \x cross product
 	\\times {$0}
