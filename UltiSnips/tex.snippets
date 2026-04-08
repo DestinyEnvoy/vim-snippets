@@ -313,6 +313,18 @@ while True:
 snip.rv = stripped[0:i] + "\\frac{" + stripped[i+1:-1] + "}"
 `{$1}$0
 endsnippet
+
+context "math()"
+snippet '(^|\s)bf([A-Za-z]|\([A-Za-z]+\))' "Bold math letters" rA
+ \\mathbf{`!p
+content = match.group(2)
+if content.startswith('(') and content.endswith(')'):
+    content = content[1:-1]
+snip.rv = content
+`} ${0}
+endsnippet
+
+
 snippet srt "Square Root" wi
 \sqrt{${1:${VISUAL}}}$0
 endsnippet
@@ -568,74 +580,78 @@ endsnippet
 # SECTIONS #
 ############
 snippet part "Part" b
-\part{${0:part name}}%
-\label{prt:${1:${1/(\w+)|\W+/(?1:\L$0\E:_)/ga}}}
+\part{${1:part name}}%
+\label{prt:${2:${1/(\w+)|\W+/(?1:\L$0\E:_)/ga}}}
 
-$-1
+${0}
 endsnippet
 
 snippet cha "Chapter" b
-\chapter{${0:chapter name}}%
-\label{cha:${1:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/ga}}}
+\chapter{${1:chapter name}}%
+\label{cha:${2:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/ga}}}
 
-$-1
+${0}
 endsnippet
 
 snippet sec "Section"
-\section{${0:${VISUAL:section name}}}%
-\label{sec:${1:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/ga}}}
+\section{${1:${VISUAL:section name}}}%
+\label{sec:${2:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/ga}}}
 
-$-1
+${0}
 endsnippet
 
 snippet sec* "Section"
-\section*{${0:${VISUAL:section name}}}%
-\label{sec:${1:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/ga}}}
+\section*{${1:${VISUAL:section name}}}%
+\label{sec:${2:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/ga}}}
 
-${-1}
+${0}
 endsnippet
 
 
 snippet sub "Subsection"
-\subsection{${0:${VISUAL:subsection name}}}%
-\label{sub:${1:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/ga}}}
+\subsection{${1:${VISUAL:subsection name}}}%
+\label{sub:${2:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/ga}}}
 
-$-1
+${0}
 endsnippet
 
 snippet sub* "Subsection"
-\subsection*{${0:${VISUAL:subsection name}}}%
-\label{sub:${1:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/ga}}}
+\subsection*{${1:${VISUAL:subsection name}}}%
+\label{sub:${2:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/ga}}}
 
-${-1}
+${0}
 endsnippet
 
 snippet ssub "Subsubsection"
-\subsubsection{${0:${VISUAL:subsubsection name}}}%
-\label{ssub:${1:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/ga}}}
+\subsubsection{${1:${VISUAL:subsubsection name}}}%
+\label{ssub:${2:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/ga}}}
 
-$-1
+${0}
 endsnippet
 
 snippet ssub* "Subsubsection"
-\subsubsection*{${0:${VISUAL:subsubsection name}}}%
-\label{ssub:${1:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/ga}}}
+\subsubsection*{${1:${VISUAL:subsubsection name}}}%
+\label{ssub:${2:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/ga}}}
 
-${-1}
+${0}
 endsnippet
 
 snippet par "Paragraph"
-\paragraph{${0:${VISUAL:paragraph name}}}%
-\label{par:${1:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/ga}}}
+\paragraph{${1:${VISUAL:paragraph name}}}%
+\label{par:${2:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/ga}}}
 
-$-1
+${0}
 endsnippet
 
 snippet subp "Subparagraph"
-\subparagraph{${0:${VISUAL:subparagraph name}}}%
-\label{par:${1:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/ga}}}
+\subparagraph{${1:${VISUAL:subparagraph name}}}%
+\label{par:${2:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/ga}}}
 
-$-1
+${0}
+endsnippet
+
+snippet '(?<!\\)(blue|red)' "Color wrapper for blue/red" rw
+{\color{`!p snip.rv = match.group(1)`} ${1:${VISUAL:text}}${0}}
 endsnippet
 
 # vim:ft=snippets:

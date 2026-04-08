@@ -87,8 +87,13 @@ snippet ddate "Month DD, YYYY" w
 `!v strftime("%b %d, %Y")`
 endsnippet
 
-snippet diso "ISO format datetime" w
-`!v strftime("%Y-%m-%dT%H:%M:%S%z")`
+#snippet diso "ISO format datetime" w
+#`!v strftime("%Y-%m-%dT%H:%M:%S%z")`
+#endsnippet
+
+# Example: 2026-04-08T22:44:58+08:00
+snippet diso "ISO 8601 format datetime" w
+`!v substitute(strftime("%Y-%m-%dT%H:%M:%S%z"), '\v(\d{2})(\d{2})$', '\1:\2', '')`
 endsnippet
 
 snippet time "hh:mm" w
