@@ -315,37 +315,10 @@ snip.rv = stripped[0:i] + "\\frac{" + stripped[i+1:-1] + "}"
 endsnippet
 
 context "math()"
-snippet '(^|\s)bf([A-Za-z]|\([A-Za-z]+\))' "Bold math letters" rA
- \\mathbf{`!p
-content = match.group(2)
-if content.startswith('(') and content.endswith(')'):
-    content = content[1:-1]
-snip.rv = content
-`} ${0}
+snippet '(^|\W|_)(bf|rm|cal|bb)(\([A-Za-z]+\)|[A-Za-z]+)' "math letters" wrA
+`!p snip.rv = match.group(1) + "\\math" + match.group(2) + "{" + match.group(3).strip("()") + "}"`
 endsnippet
 
-
-context "math()"
-snippet '(^|\s)rm([A-Za-z]|\([A-Za-z]+\))' "Roman math letters" rA
- \\mathrm{`!p
-content = match.group(2)
-if content.startswith('(') and content.endswith(')'):
-    content = content[1:-1]
-snip.rv = content
-`} ${0}
-endsnippet
-
-
-
-context "math()"
-snippet '(^|\s)cal([A-Z])' "cal math letters" rA
- \\mathcal{`!p snip.rv = match.group(2)`} ${0}
-endsnippet
-
-context "math()"
-snippet '(^|\s)bb([A-Z])' "bb math letters" rA
- \\mathbb{`!p snip.rv = match.group(2)`} ${0}
-endsnippet
 
 
 snippet srt "Square Root" wi
